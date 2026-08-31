@@ -31,8 +31,8 @@ Deployment uses SSH and rsync. Create an untracked `.deploy.env` file:
 ```bash
 DEPLOY_HOST="example.dreamhost.com"
 DEPLOY_USER="dreamhost-user"
-DEPLOY_STAGE_DIR="/home/dreamhost-user/stage.dougforar.com"
-DEPLOY_PROD_DIR="/home/dreamhost-user/dougforar.com"
+DEPLOY_STAGE_DIR="/home/dreamhost-user/sites/stage.dougforar.com"
+DEPLOY_PROD_DIR="/home/dreamhost-user/sites/dougforar.com"
 ```
 
 Preview a deployment before sending files:

@@ -112,6 +112,7 @@ rsync \
     --delete \
     --itemize-changes \
     --exclude='.well-known/' \
+    --exclude='.dh-diag' \
     "${DRY_RUN[@]}" \
     dist/ \
     "$DESTINATION"

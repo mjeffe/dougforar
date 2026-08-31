@@ -1,85 +1,98 @@
-# ARC Website: Agent Guidelines
+# Doug for Arkansas Website: Agent Guidelines
 
 ## Project Overview
 
-This is the static HTML website for the political candidate Doug Corbitt, running
-for Arkansas State Representative for district 54, as a Democrat.
+This is the static campaign website for Doug Corbitt, a Democratic candidate
+for Arkansas State Representative in District 54 in 2026.
 
-It uses Vite + Tailwind CSS 4 with Handlebars partials for shared header/footer.
+The site is currently in a design-review phase. The root page links to three
+initial concepts and one refined working draft:
 
-## Writing style
+- `/common-ground/`
+- `/neighbor-first/`
+- `/bold-campaign/`
+- `/refined/`
 
-- Use plain ASCII characters only. No Unicode decorative glyphs: no smart
-  quotes, no fancy arrows, no bullet alternatives. Use standard ASCII
-  replacements: `->` for arrows, `*` or `-` for bullets, straight quotes.
-- Avoid stylistic tics common in LLM output. No sign-off pleasantries
-  ("Certainly!", "Let me know if..."). No overuse of bold/italics for
-  emphasis in documents meant for external sharing. Do not use em-dashes; reword
-  with a comma, parentheses, or a separate sentence instead.
-
-## Commit Messages
-
-- Follow the Writing style rules above (ASCII only, no em dashes)
-- Use conventional commits (feat:, fix:, etc.)
-- First line under 72 characters, blank line before body
-- No agent attribution or "Generated with" footers
+Keep the concept pages available until a final direction is approved. The
+selected design will eventually become the production home page.
 
 ## Architecture
 
-- **Vite** build tool with `@tailwindcss/vite` plugin and `vite-plugin-handlebars`
-- **Tailwind CSS 4**: CSS-first config via `@theme {}` in `src/assets/css/main.css`
-  (no `tailwind.config.js` or `postcss.config.js`)
-- **Handlebars partials** in `src/partials/`: `head.html`, `header.html`, `footer.html`
-- All source HTML lives in `src/`, build output goes to `dist/`
+- Vite 8 with `src/` as the project root
+- Tailwind CSS 4 through the `@tailwindcss/vite` plugin
+- CSS-first Tailwind configuration in `src/assets/css/main.css`
+- Plain HTML with no template system or JavaScript framework
+- Source HTML in `src/`; generated output in `dist/`
+- Static files in `src/public/`, copied unchanged to `dist/`
 
-## Site Sections
-
-fill this in
+Do not introduce Handlebars, Alpine.js, or another dependency unless the
+approved site requires behavior that cannot be implemented simply without it.
 
 ## Development
 
-- `npm run dev`: Vite dev server with hot reload
-- `npm run build`: production build to `dist/`
-- `npm run a11y`: run pa11y-ci accessibility audit (WCAG 2 AA, htmlcs + axe).
-  Requires `npm run preview` to be running on `http://localhost:4173`, or set
-  `PA11Y_BASE_URL` to test a remote site. `./deploy.sh` runs this automatically
-  against the local build before rsyncing to the server.
-- Code is in GitHub; only `main` branch is maintained
-- Deploy with `./deploy.sh dev|prod` which builds and rsyncs `dist/` to server
-- **Keep Unix line endings**: Windows CRLF breaks JS and creates noisy diffs
+- `npm run dev`: start the Vite development server
+- `npm run build`: build the site into `dist/`
+- `npm run preview`: serve the production build on port 4173
+- `npm run a11y`: audit all configured pages against WCAG 2 AA; requires a
+  preview server on `http://localhost:4173` or `PA11Y_BASE_URL`
+- `./deploy.sh stage|prod`: build and deploy `dist/` to DreamHost
+- `./deploy.sh stage|prod --dry-run`: preview an rsync deployment
 
-### Adding a new HTML page
+Deployment settings belong in the untracked `.deploy.env` file. Never commit
+SSH credentials or server-specific secrets.
 
-When you add a new page under `src/`, you must also add its path to the `paths`
-array in [`.pa11yci.cjs`](./.pa11yci.cjs). Otherwise pa11y will silently skip
-auditing it on every deploy. (Vite picks up new `src/*.html` files automatically
-for the build, but pa11y has no way to know which URLs to audit.)
+## Adding or Removing Pages
 
-## Conventions
+HTML entry points are explicit. Whenever a page is added, removed, or renamed,
+update both:
 
-- HTML is indented with 4 spaces
-- Use Tailwind utility classes directly: no component abstractions
-- Use `stone-*` (not `gray-*`) for all gray shades
-- Semantic colors defined in `@theme`: `primary`, `primary-hover`, `secondary`, `accent`
-- CSS custom styles prefixed with `arc-` (e.g., `arc-accordion`)
-- Use relative paths for all internal links and assets
-- JS files in `src/assets/` must use `<script type="module">` (plain `<script>` tags 404 in production)
-- **ASCII-only in code, scripts, Apache config files, and Markdown files**
-  (`*.js`, `*.cjs`, `*.sh`, `*.css`, `*.md`, `apache/*.conf`). No em dashes,
-  smart quotes, or Unicode arrows in code or comments: use straight quotes
-  and `->` instead. Quick check: `grep -rP '[^\x00-\x7F]' <file>`.
-- See `DEVELOPMENT.md` for page template, UI patterns (headings, links, lists,
-  thumbnails, cards, accordions, YouTube/Tableau embeds), and Vite build gotchas
+1. `build.rollupOptions.input` in `vite.config.js`
+2. The audited URL list in `.pa11yci.cjs`
 
-## Asset Organization
+## HTML and CSS Conventions
 
-Static assets live in `src/public/` (copied as-is to `dist/`):
+- Indent HTML with 4 spaces.
+- Use Tailwind utility classes directly. Avoid one-use component abstractions.
+- Use `stone-*`, not `gray-*`, for neutral Tailwind colors.
+- Prefer semantic theme colors: `primary`, `primary-hover`, `secondary`,
+  `accent`, `paper`, and `ink`.
+- Prefix custom CSS classes with `arc-`.
+- Use relative paths for internal links and assets.
+- Use semantic HTML, visible keyboard focus, descriptive alternative text, and
+  WCAG 2 AA color contrast.
+- Keep Unix line endings.
 
-**flll this in...**
+## Content and Privacy
 
-All filenames use **lowercase kebab-case**. Thumbnail images use a `-thumb` suffix
-(e.g., `edi-phase1-report-thumb.png`).
+- `facebook-content.md` contains draft source material from Doug's 2024
+  campaign. Condense and adapt it, but do not invent positions or biographical
+  claims.
+- Current confirmed public contact methods are `vote@dougforar.com` and the
+  campaign Facebook page.
+- Do not publish Doug's phone number without explicit approval.
+- Do not add donation, volunteer, email, or SMS collection until the campaign
+  supplies the approved service, destination, and any required consent text.
+- Keep `noindex, nofollow` on concept and staging pages. Remove it only from the
+  approved production site.
+- The current paid-for disclaimer is provisional and must be confirmed with the
+  campaign before production launch.
 
-## Important Notes
+## Assets
 
-- Do NOT modify files in `dist/`: they are overwritten on each build
+Campaign photographs are in `src/public/assets/img/`. Use lowercase kebab-case
+filenames for new assets. Do not upscale low-resolution photographs beyond a
+size where they remain visually acceptable.
+
+## Writing Style
+
+- Use plain ASCII in code, scripts, configuration, and Markdown.
+- Use straight quotes and ordinary hyphens. Do not use smart quotes, em dashes,
+  Unicode arrows, or decorative glyphs.
+- Keep campaign copy direct, specific, and grounded in Doug's approved words.
+
+## Git and Generated Files
+
+- Use conventional commit messages with a first line under 72 characters.
+- Do not add agent attribution to commits.
+- Do not edit or commit `dist/`; it is replaced by every build.
+- Do not commit `node_modules/` or `.deploy.env`.

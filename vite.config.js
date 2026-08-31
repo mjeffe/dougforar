@@ -11,6 +11,7 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 index: resolve(import.meta.dirname, "src/index.html"),
+                "coming-soon/index": resolve(import.meta.dirname, "src/coming-soon/index.html"),
                 "common-ground/index": resolve(import.meta.dirname, "src/common-ground/index.html"),
                 "neighbor-first/index": resolve(import.meta.dirname, "src/neighbor-first/index.html"),
                 "bold-campaign/index": resolve(import.meta.dirname, "src/bold-campaign/index.html"),

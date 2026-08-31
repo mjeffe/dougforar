@@ -8,6 +8,7 @@ module.exports = {
     },
     urls: [
         `${baseUrl}/`,
+        `${baseUrl}/coming-soon/`,
         `${baseUrl}/common-ground/`,
         `${baseUrl}/neighbor-first/`,
         `${baseUrl}/bold-campaign/`,

@@ -2,6 +2,8 @@
 
 Here are some text selection from Doug's 2024 facebook campaign page
 
+https://www.facebook.com/people/Doug-Corbitt-for-State-Representative/61560907289953/
+
 ---
 
 ## Intro

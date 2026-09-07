@@ -1,0 +1,398 @@
+/*
+Theme Name: Doug for Arkansas
+Theme URI: https://dougforar.com/
+Author: Doug Corbitt for State Representative
+Description: Custom block theme for the Doug Corbitt campaign.
+Version: 0.1.0
+Requires at least: 7.1
+Requires PHP: 8.2
+Text Domain: dougforar
+*/
+
+:root {
+    --dc-navy: #101f3d;
+    --dc-red: #d54638;
+    --dc-red-dark: #b9362b;
+    --dc-red-light: #f26b5e;
+    --dc-ink: #1a1a1a;
+    --dc-muted: #5a626d;
+    --dc-surface: #f5f6f7;
+    --dc-white: #ffffff;
+    --dc-content: 72rem;
+    --dc-header-content: 88rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--dc-white);
+    color: var(--dc-ink);
+    text-rendering: optimizeLegibility;
+}
+
+.wp-site-blocks {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.wp-site-blocks > main {
+    flex: 1;
+}
+
+a {
+    text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+    outline: 3px solid var(--dc-red);
+    outline-offset: 4px;
+}
+
+.dc-site-header {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid rgb(255 255 255 / 18%);
+}
+
+.dc-header-inner {
+    width: min(calc(100% - clamp(2rem, 5vw, 5rem)), var(--dc-header-content));
+    max-width: var(--dc-header-content);
+    margin-inline: auto;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.dc-footer-inner {
+    width: min(calc(100% - 2rem), var(--dc-content));
+    max-width: var(--dc-content);
+    margin-inline: auto;
+}
+
+.dc-wordmark {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.dc-wordmark a {
+    color: var(--dc-white);
+    text-decoration: none;
+}
+
+.dc-wordmark strong {
+    display: block;
+    font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+    line-height: 1;
+}
+
+.dc-wordmark span {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.dc-site-header .wp-block-navigation-item__content {
+    font-size: 1.05rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.dc-site-header .wp-block-navigation__container {
+    flex-wrap: nowrap;
+    column-gap: clamp(0.85rem, 1.6vw, 1.75rem);
+    row-gap: 0;
+}
+
+.dc-site-header .wp-block-navigation__responsive-container.is-menu-open {
+    box-sizing: border-box;
+    padding: clamp(1.5rem, 5vw, 3rem);
+}
+
+.dc-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+    font-size: 1.25rem;
+}
+
+.dc-site-header .wp-block-navigation__container > .wp-block-navigation-item:last-child > .wp-block-navigation-item__content {
+    border: 2px solid var(--dc-white);
+    padding: 0.65rem 1rem;
+}
+
+.dc-hero {
+    scroll-margin-top: 2rem;
+    padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.dc-hero-inner {
+    width: min(calc(100% - 2.5rem), 80rem);
+    max-width: 80rem;
+    margin-inline: auto;
+    gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.dc-eyebrow {
+    margin-bottom: 1rem;
+    color: var(--dc-red-dark);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.has-navy-background-color .dc-eyebrow {
+    color: var(--dc-red-light);
+}
+
+.dc-hero h1 {
+    max-width: 10ch;
+    margin-block: 0 1.5rem;
+    font-size: clamp(3.25rem, 5vw, 4.75rem);
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+}
+
+.dc-lead,
+.dc-page-intro {
+    max-width: 42rem;
+    color: var(--dc-muted);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.55;
+}
+
+.dc-hero-photo {
+    max-width: 30rem;
+}
+
+.dc-hero-photo figure {
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    overflow: hidden;
+}
+
+.dc-hero-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 35%;
+}
+
+.dc-rule {
+    width: 5rem;
+    height: 0.45rem;
+    margin: 0 0 1.75rem;
+    border: 0;
+    background: var(--dc-red);
+}
+
+.dc-section {
+    scroll-margin-top: 2rem;
+    padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.dc-section-inner,
+.dc-page-main {
+    width: min(calc(100% - 2.5rem), var(--dc-content));
+    max-width: var(--dc-content);
+    margin-inline: auto;
+}
+
+.dc-section-narrow {
+    max-width: 50rem;
+}
+
+.dc-section h2 {
+    margin-top: 0;
+    font-size: clamp(2.4rem, 3.5vw, 3.25rem);
+    letter-spacing: -0.045em;
+    line-height: 1;
+}
+
+.dc-section p {
+    font-size: 1.12rem;
+    line-height: 1.75;
+}
+
+.dc-action {
+    text-align: center;
+}
+
+.dc-action .dc-rule {
+    margin-inline: auto;
+    background: var(--dc-white);
+}
+
+.dc-action p {
+    max-width: 42rem;
+    margin-inline: auto;
+}
+
+.dc-action .wp-block-buttons {
+    justify-content: center;
+}
+
+.dc-priority-grid {
+    margin-top: 3rem;
+}
+
+.dc-priority-grid .wp-block-column {
+    border-top: 0.4rem solid var(--dc-red);
+    padding-top: 1.5rem;
+}
+
+.dc-priority-grid h3 {
+    font-size: 1.5rem;
+}
+
+.dc-page-main {
+    min-height: 55vh;
+    padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.dc-page-main > h1 {
+    width: 100%;
+    max-width: 58rem;
+    margin: 0 0 2.5rem;
+    font-size: clamp(3.25rem, 5vw, 4.75rem);
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+}
+
+.dc-page-content {
+    max-width: 58rem;
+}
+
+.dc-page-content > * + * {
+    margin-top: 1.5rem;
+}
+
+.dc-page-content > .dc-page-intro {
+    max-width: 100%;
+}
+
+.dc-priority-list {
+    width: 100%;
+    margin-top: 3.5rem;
+}
+
+.dc-priority-item {
+    border-top: 0.35rem solid var(--dc-red);
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+.dc-priority-item:last-child {
+    padding-bottom: 0;
+}
+
+.dc-priority-item h2 {
+    max-width: 24ch;
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+}
+
+.dc-priority-item p {
+    max-width: 48rem;
+    margin: 1rem 0 0;
+    font-size: 1.12rem;
+    line-height: 1.75;
+}
+
+.dc-map-preview {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 3.5rem;
+}
+
+.dc-map-preview figure {
+    margin: 0;
+}
+
+.dc-map-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #c7cbd1;
+}
+
+.dc-map-preview figcaption {
+    margin-top: 0.75rem;
+    color: var(--dc-muted);
+    font-size: 0.9rem;
+}
+
+.wp-block-columns.dc-card-grid {
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    align-items: stretch;
+    margin-top: 3rem;
+}
+
+.dc-card-grid .wp-block-column {
+    display: flex;
+    flex-direction: column;
+    border-top: 0.35rem solid var(--dc-red);
+    background: var(--dc-surface);
+    padding: 1.5rem;
+}
+
+.dc-card-grid h2 {
+    margin-top: 0;
+    font-size: 1.45rem;
+}
+
+.dc-card-grid .wp-block-buttons {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.dc-card-grid .dc-campaign-site {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+}
+
+.dc-site-footer a {
+    color: inherit;
+}
+
+.dc-disclaimer {
+    border: 1px solid rgb(255 255 255 / 45%);
+    padding: 0.65rem 0.85rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+@media (max-width: 781px) {
+    .dc-hero-photo {
+        width: 100%;
+        margin-inline: auto;
+    }
+
+    .dc-site-header .wp-block-navigation__container > .wp-block-navigation-item:last-child > .wp-block-navigation-item__content {
+        border: 0;
+        padding: 0;
+    }
+}
+
+@media (max-width: 1020px) {
+    .dc-site-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+        display: flex !important;
+    }
+
+    .dc-site-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+        display: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

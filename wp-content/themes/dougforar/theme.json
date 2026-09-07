@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "settings": {
+        "appearanceTools": true,
+        "color": {
+            "defaultPalette": false,
+            "palette": [
+                { "slug": "navy", "name": "Navy", "color": "#101f3d" },
+                { "slug": "red", "name": "Red", "color": "#d54638" },
+                { "slug": "red-dark", "name": "Accessible red", "color": "#b9362b" },
+                { "slug": "ink", "name": "Ink", "color": "#1a1a1a" },
+                { "slug": "surface", "name": "Light gray", "color": "#f5f6f7" },
+                { "slug": "white", "name": "White", "color": "#ffffff" }
+            ]
+        },
+        "layout": {
+            "contentSize": "46rem",
+            "wideSize": "72rem"
+        },
+        "spacing": {
+            "blockGap": "1.5rem",
+            "units": ["px", "rem", "vw", "%"]
+        },
+        "typography": {
+            "fluid": true,
+            "fontFamilies": [
+                {
+                    "fontFamily": "Arial, Helvetica, sans-serif",
+                    "name": "Campaign Sans",
+                    "slug": "campaign-sans"
+                }
+            ]
+        }
+    },
+    "styles": {
+        "color": {
+            "background": "#ffffff",
+            "text": "#1a1a1a"
+        },
+        "spacing": {
+            "blockGap": "1.5rem"
+        },
+        "typography": {
+            "fontFamily": "var:preset|font-family|campaign-sans",
+            "fontSize": "1rem",
+            "lineHeight": "1.6"
+        },
+        "elements": {
+            "button": {
+                "border": { "radius": "0" },
+                "color": {
+                    "background": "#101f3d",
+                    "text": "#ffffff"
+                },
+                "typography": { "fontWeight": "700" }
+            },
+            "heading": {
+                "color": { "text": "#101f3d" },
+                "typography": {
+                    "fontWeight": "800",
+                    "lineHeight": "1.05"
+                }
+            },
+            "link": {
+                "color": { "text": "#101f3d" }
+            }
+        }
+    },
+    "templateParts": [
+        { "area": "header", "name": "header", "title": "Header" },
+        { "area": "footer", "name": "footer", "title": "Footer" }
+    ]
+}

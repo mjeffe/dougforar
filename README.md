@@ -1,12 +1,53 @@
 # Doug for Arkansas Campaign Website
 
-Static campaign website for Doug Corbitt, candidate for Arkansas State
-Representative in District 54.
+Campaign website for Doug Corbitt, candidate for Arkansas State Representative
+in District 54.
 
-The project currently contains three design concepts and one refined working
-draft. The root page provides links to each option.
+The production direction is a custom WordPress block theme. Earlier static
+design concepts remain in `src/` for reference during development.
 
-## Development
+## WordPress development
+
+Requirements: Docker with Docker Compose and the Docker daemon running.
+
+For the first run, initialize WordPress, activate the campaign theme, create the
+local pages, and start the containers with:
+
+```bash
+npm run wp:setup
+```
+
+The site runs at <http://localhost:8080>. The local-only administrator is
+`admin` with password `local-development-only`.
+
+On later runs, start the existing WordPress and database containers with:
+
+```bash
+npm run wp:start
+```
+
+The available WordPress commands are:
+
+| Command | Purpose |
+| --- | --- |
+| `npm run wp:setup` | Initialize or refresh the local setup and start it |
+| `npm run wp:start` | Start the existing local containers |
+| `npm run wp:stop` | Stop the local containers |
+| `npm run wp:logs` | Follow the WordPress container logs |
+
+These npm scripts invoke Docker Compose; they do not start or stop the Docker
+daemon. The theme is bind-mounted from `wp-content/themes/dougforar`, so theme
+file changes appear without rebuilding the container.
+
+Stop the environment with:
+
+```bash
+npm run wp:stop
+```
+
+Set `WP_PORT` if port 8080 is unavailable.
+
+## Static concept development
 
 Requirements: Node.js 20.19+ or 22.12+ and npm.
 
@@ -24,7 +65,7 @@ npm run build
 To run accessibility checks, start `npm run preview` in one terminal and run
 `npm run a11y` in another.
 
-## Deployment
+## Static concept deployment
 
 Deployment uses SSH and rsync. Create an untracked `.deploy.env` file:
 

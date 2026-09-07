@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "a11y": "pa11y-ci --config .pa11yci.cjs"
+    "a11y": "pa11y-ci --config .pa11yci.cjs",
+    "wp:start": "docker compose up -d wordpress",
+    "wp:setup": "./scripts/setup-local-wordpress.sh",
+    "wp:stop": "docker compose down",
+    "wp:logs": "docker compose logs -f wordpress"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.2",

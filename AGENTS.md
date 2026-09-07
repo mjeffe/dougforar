@@ -67,7 +67,7 @@ update both:
 - `facebook-content.md` contains draft source material from Doug's 2024
   campaign. Condense and adapt it, but do not invent positions or biographical
   claims.
-- Current confirmed public contact methods are `vote@dougforar.com` and the
+- Current confirmed public contact methods are `dougcorbitt@arkansas54.net` and the
   campaign Facebook page.
 - Do not publish Doug's phone number without explicit approval.
 - Do not add donation, volunteer, email, or SMS collection until the campaign

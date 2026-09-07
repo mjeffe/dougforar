@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
 wp() {
     docker compose run --rm wp-cli "$@"
 }
@@ -52,7 +54,8 @@ for default_slug in hello-world sample-page; do
     fi
 done
 
-home_id="$(ensure_page "Home" "home" "")"
+home_content="$(<"$repo_root/wp-content/themes/dougforar/content/home.html")"
+home_id="$(ensure_page "Home" "home" "$home_content")"
 blog_id="$(ensure_page "Blog" "blog" "")"
 
 priorities_content='<!-- wp:paragraph {"className":"dc-page-intro"} -->

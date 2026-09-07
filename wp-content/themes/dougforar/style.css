@@ -39,6 +39,11 @@ body {
     flex-direction: column;
 }
 
+.wp-site-blocks > * + *,
+.dc-home-content > * + * {
+    margin-block-start: 0;
+}
+
 .wp-site-blocks > main {
     flex: 1;
 }

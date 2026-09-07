@@ -56,7 +56,7 @@ update both:
 - Use `stone-*`, not `gray-*`, for neutral Tailwind colors.
 - Prefer semantic theme colors: `primary`, `primary-hover`, `secondary`,
   `accent`, `paper`, and `ink`.
-- Prefix custom CSS classes with `arc-`.
+- Prefix custom CSS classes with `dc-`.
 - Use relative paths for internal links and assets.
 - Use semantic HTML, visible keyboard focus, descriptive alternative text, and
   WCAG 2 AA color contrast.

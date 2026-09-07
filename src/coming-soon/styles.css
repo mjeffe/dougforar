@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.arc-page {
+.dc-page {
     display: flex;
     min-height: 100vh;
     align-items: center;
@@ -22,12 +22,12 @@ body {
     text-align: center;
 }
 
-.arc-content {
+.dc-content {
     width: 100%;
     max-width: 42rem;
 }
 
-.arc-district {
+.dc-district {
     margin: 0;
     color: #173f67;
     font-size: 0.875rem;
@@ -43,27 +43,27 @@ h1 {
     line-height: 1.1;
 }
 
-.arc-office {
+.dc-office {
     margin: 1.25rem 0 0;
     color: #44403c;
     font-size: clamp(1.25rem, 5vw, 1.5rem);
     font-weight: 700;
 }
 
-.arc-rule {
+.dc-rule {
     width: 4rem;
     height: 0.25rem;
     margin: 2.5rem auto;
     background: #a43d35;
 }
 
-.arc-message {
+.dc-message {
     margin: 0;
     color: #57534e;
     font-size: 1.125rem;
 }
 
-.arc-disclaimer {
+.dc-disclaimer {
     max-width: 28rem;
     margin: 4rem auto 0;
     padding: 0.5rem 1rem;

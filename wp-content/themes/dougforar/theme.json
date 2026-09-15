@@ -7,8 +7,8 @@
             "defaultPalette": false,
             "palette": [
                 { "slug": "navy", "name": "Navy", "color": "#101f3d" },
-                { "slug": "red", "name": "Red", "color": "#d54638" },
-                { "slug": "red-dark", "name": "Accessible red", "color": "#b9362b" },
+                { "slug": "red", "name": "Red", "color": "#b6463c" },
+                { "slug": "red-dark", "name": "Dark red", "color": "#963a33" },
                 { "slug": "ink", "name": "Ink", "color": "#1a1a1a" },
                 { "slug": "surface", "name": "Light gray", "color": "#f5f6f7" },
                 { "slug": "white", "name": "White", "color": "#ffffff" }

@@ -11,9 +11,9 @@ Text Domain: dougforar
 
 :root {
     --dc-navy: #101f3d;
-    --dc-red: #d54638;
-    --dc-red-dark: #b9362b;
-    --dc-red-light: #f26b5e;
+    --dc-red: #b6463c;
+    --dc-red-dark: #963a33;
+    --dc-red-light: #e98278;
     --dc-ink: #1a1a1a;
     --dc-muted: #5a626d;
     --dc-surface: #f5f6f7;
@@ -223,7 +223,12 @@ a {
 }
 
 .dc-action {
+    background-color: var(--dc-red) !important;
     text-align: center;
+}
+
+.dc-action :focus-visible {
+    outline-color: var(--dc-white);
 }
 
 .dc-action .dc-rule {

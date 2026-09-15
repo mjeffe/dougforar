@@ -58,18 +58,7 @@ home_content="$(<"$repo_root/wp-content/themes/dougforar/content/home.html")"
 home_id="$(ensure_page "Home" "home" "$home_content")"
 blog_id="$(ensure_page "Blog" "blog" "")"
 
-priorities_content='<!-- wp:paragraph {"className":"dc-page-intro"} -->
-<p class="dc-page-intro">Doug believes state government should focus on the essentials that help Arkansas families and communities thrive.</p>
-<!-- /wp:paragraph -->
-<!-- wp:group {"align":"wide","className":"dc-priority-list","layout":{"type":"default"}} -->
-<div class="wp-block-group alignwide dc-priority-list"><!-- wp:group {"tagName":"section","className":"dc-priority-item","layout":{"type":"default"}} -->
-<section class="wp-block-group dc-priority-item"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Strong Public Schools</h2><!-- /wp:heading --><!-- wp:paragraph --><p>After more than 30 years as an educator at a public institution, Doug knows how important it is to provide quality education for every Arkansas student. He will work to keep public dollars focused on students, educators, and neighborhood schools.</p><!-- /wp:paragraph --></section>
-<!-- /wp:group --><!-- wp:group {"tagName":"section","className":"dc-priority-item","layout":{"type":"default"}} -->
-<section class="wp-block-group dc-priority-item"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Healthcare Close to Home</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Every Arkansan deserves access to quality healthcare that is local and affordable. Doug will work to protect care for rural families, including expectant mothers who currently have to travel out of their county for necessary care.</p><!-- /wp:paragraph --></section>
-<!-- /wp:group --><!-- wp:group {"tagName":"section","className":"dc-priority-item","layout":{"type":"default"}} -->
-<section class="wp-block-group dc-priority-item"><!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Open, Responsive Government</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Government should work for the people. Doug will protect public access to information, be transparent about how tax dollars are spent, and listen to the people of District 54.</p><!-- /wp:paragraph --></section>
-<!-- /wp:group --></div>
-<!-- /wp:group -->'
+priorities_content="$(<"$repo_root/wp-content/themes/dougforar/content/priorities.html")"
 ensure_page "Priorities" "priorities" "$priorities_content" >/dev/null
 
 district_content='<!-- wp:paragraph {"className":"dc-page-intro"} -->

@@ -248,7 +248,10 @@ a {
     justify-content: center;
 }
 
-.dc-priority-grid {
+.wp-block-columns.dc-priority-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem clamp(2rem, 5vw, 5rem);
     margin-top: 3rem;
 }
 
@@ -259,6 +262,15 @@ a {
 
 .dc-priority-grid h3 {
     font-size: 1.5rem;
+}
+
+.dc-priority-grid p {
+    margin-bottom: 0;
+}
+
+.dc-priority-grid + .wp-block-buttons {
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 .dc-page-main {
@@ -302,9 +314,9 @@ a {
 }
 
 .dc-priority-item h2 {
-    max-width: 24ch;
     margin: 0;
-    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-size: clamp(1.45rem, 6vw, 2.75rem);
+    white-space: nowrap;
 }
 
 .dc-priority-item p {
@@ -312,6 +324,22 @@ a {
     margin: 1rem 0 0;
     font-size: 1.12rem;
     line-height: 1.75;
+}
+
+.dc-priority-points {
+    max-width: 48rem;
+    margin: 1.5rem 0 0;
+    padding-left: 1.4rem;
+    font-size: 1.12rem;
+    line-height: 1.7;
+}
+
+.dc-priority-points li + li {
+    margin-top: 0.75rem;
+}
+
+.dc-priority-points li::marker {
+    color: var(--dc-red-dark);
 }
 
 .dc-map-preview {
@@ -383,6 +411,10 @@ a {
 }
 
 @media (max-width: 781px) {
+    .wp-block-columns.dc-priority-grid {
+        grid-template-columns: 1fr;
+    }
+
     .dc-hero-inner {
         display: flex;
         flex-direction: column;

@@ -61,6 +61,11 @@ blog_id="$(ensure_page "Blog" "blog" "")"
 priorities_content="$(<"$repo_root/wp-content/themes/dougforar/content/priorities.html")"
 ensure_page "Priorities" "priorities" "$priorities_content" >/dev/null
 
+privacy_content="$(<"$repo_root/wp-content/themes/dougforar/content/privacy-policy.html")"
+privacy_id="$(ensure_page "Privacy Policy" "privacy-policy" "$privacy_content")"
+wp post update "$privacy_id" --post_status=publish --post_content="$privacy_content" >/dev/null
+wp option update wp_page_for_privacy_policy "$privacy_id"
+
 district_content='<!-- wp:paragraph {"className":"dc-page-intro"} -->
 <p class="dc-page-intro">Explore the official boundaries of Arkansas House District 54.</p>
 <!-- /wp:paragraph -->

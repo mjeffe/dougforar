@@ -134,8 +134,8 @@ a {
 
 .dc-hero-inner {
     display: flow-root;
-    width: min(calc(100% - 2.5rem), 80rem);
-    max-width: 80rem;
+    width: min(calc(100% - 2.5rem), var(--dc-content));
+    max-width: var(--dc-content);
     margin-inline: auto;
 }
 
@@ -208,10 +208,6 @@ a {
     margin-inline: auto;
 }
 
-.dc-section-narrow {
-    max-width: 50rem;
-}
-
 .dc-section h2 {
     margin-top: 0;
     font-size: clamp(2.4rem, 3.5vw, 3.25rem);
@@ -219,6 +215,7 @@ a {
     line-height: 1;
 }
 
+.dc-body-copy,
 .dc-section p {
     font-size: 1.12rem;
     line-height: 1.75;
@@ -427,7 +424,8 @@ a {
         order: 2;
     }
 
-    .dc-hero-inner > .dc-lead {
+    .dc-hero-inner > .dc-lead,
+    .dc-hero-inner > .dc-body-copy {
         order: 5;
     }
 

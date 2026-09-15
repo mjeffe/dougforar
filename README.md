@@ -1,17 +1,18 @@
 # Doug for Arkansas Campaign Website
 
-Campaign website for Doug Corbitt, candidate for Arkansas State Representative
-in District 54.
+Custom WordPress block theme for Doug Corbitt, candidate for Arkansas State
+Representative in District 54.
 
-The production direction is a custom WordPress block theme. Earlier static
-design concepts remain in `src/` for reference during development.
+The WordPress site is the only website in this repository. Theme source lives
+in `wp-content/themes/dougforar/`. Original campaign photography is kept in
+`images/`; optimized or cropped files used by the site belong in the theme's
+`assets/images/` directory.
 
-## WordPress development
+## Local development
 
 Requirements: Docker with Docker Compose and the Docker daemon running.
 
-For the first run, initialize WordPress, activate the campaign theme, create the
-local pages, and start the containers with:
+Initialize WordPress, activate the campaign theme, and create the local pages:
 
 ```bash
 npm run wp:setup
@@ -23,70 +24,55 @@ The site runs at <http://localhost:8080>. The local-only administrator is
 On later runs, start the existing WordPress and database containers with:
 
 ```bash
-npm run wp:start
-```
-
-The available WordPress commands are:
-
-| Command | Purpose |
-| --- | --- |
-| `npm run wp:setup` | Initialize or refresh the local setup and start it |
-| `npm run wp:start` | Start the existing local containers |
-| `npm run wp:stop` | Stop the local containers |
-| `npm run wp:logs` | Follow the WordPress container logs |
-
-These npm scripts invoke Docker Compose; they do not start or stop the Docker
-daemon. The theme is bind-mounted from `wp-content/themes/dougforar`, so theme
-file changes appear without rebuilding the container.
-
-Stop the environment with:
-
-```bash
-npm run wp:stop
-```
-
-Set `WP_PORT` if port 8080 is unavailable.
-
-## Static concept development
-
-Requirements: Node.js 20.19+ or 22.12+ and npm.
-
-```bash
-npm install
 npm run dev
 ```
 
-Create a production build with:
+The available commands are:
 
-```bash
-npm run build
-```
+| Command | Purpose |
+| --- | --- |
+| `npm run wp:setup` | Initialize the local site and ensure its pages exist |
+| `npm run dev` | Start the existing local containers |
+| `npm run wp:start` | Alias for `npm run dev` |
+| `npm run wp:stop` | Stop and remove the local containers |
+| `npm run wp:logs` | Follow the WordPress container logs |
 
-To run accessibility checks, start `npm run preview` in one terminal and run
-`npm run a11y` in another.
+These npm scripts invoke Docker Compose; they do not start or stop the Docker
+daemon. The custom theme is bind-mounted into WordPress, so theme file changes
+appear without rebuilding the container. WordPress core, uploads, and the local
+database are stored in Docker volumes and are not committed.
 
-## Static concept deployment
+Set `WP_PORT` if port 8080 is unavailable.
 
-Deployment uses SSH and rsync. Create an untracked `.deploy.env` file:
+## Project structure
 
-```bash
-DEPLOY_HOST="example.dreamhost.com"
-DEPLOY_USER="dreamhost-user"
-DEPLOY_STAGE_DIR="/home/dreamhost-user/sites/stage.dougforar.com"
-DEPLOY_PROD_DIR="/home/dreamhost-user/sites/dougforar.com"
-```
+- `wp-content/themes/dougforar/`: production theme source
+- `wp-content/themes/dougforar/content/`: block content used during local setup
+- `scripts/setup-local-wordpress.sh`: repeatable local WordPress initialization
+- `images/`: original source photography, not served directly by WordPress
+- `compose.yaml`: local WordPress, WP-CLI, and MariaDB services
 
-Preview a deployment before sending files:
+## Deployment
+
+Deployment syncs only the runtime files in the custom theme. It does not deploy
+WordPress core, plugins, uploads, database content, or the local setup fixture
+in the theme's `content/` directory. The destination must already be a working
+WordPress installation.
+
+Copy `.deploy.env.example` to the ignored `.deploy.env` file and configure the
+SSH host, user, and WordPress root directories. Preview a deployment first:
 
 ```bash
 ./deploy.sh stage --dry-run
+./deploy.sh prod --dry-run
 ```
 
-Deploy with:
+Deploy the theme with:
 
 ```bash
 ./deploy.sh stage
 ./deploy.sh prod
 ```
 
-Only the generated contents of `dist/` are uploaded.
+Production deployment requires interactive confirmation. The script uses the
+SSH configuration and keys available to the current user.

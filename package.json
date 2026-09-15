@@ -2,21 +2,11 @@
   "name": "dougforar",
   "private": true,
   "version": "0.1.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "a11y": "pa11y-ci --config .pa11yci.cjs",
+    "dev": "docker compose up -d wordpress",
     "wp:start": "docker compose up -d wordpress",
     "wp:setup": "./scripts/setup-local-wordpress.sh",
     "wp:stop": "docker compose down",
     "wp:logs": "docker compose logs -f wordpress"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2",
-    "pa11y-ci": "^4.1.0",
-    "tailwindcss": "^4.2.2",
-    "vite": "^8.0.3"
   }
 }

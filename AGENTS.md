@@ -2,62 +2,58 @@
 
 ## Project Overview
 
-This is the static campaign website for Doug Corbitt, a Democratic candidate
-for Arkansas State Representative in District 54 in 2026.
+This is the custom WordPress campaign website for Doug Corbitt, a Democratic
+candidate for Arkansas State Representative in District 54 in 2026.
 
-The site is currently in a design-review phase. The root page links to three
-initial concepts and one refined working draft:
-
-- `/common-ground/`
-- `/neighbor-first/`
-- `/bold-campaign/`
-- `/refined/`
-
-Keep the concept pages available until a final direction is approved. The
-selected design will eventually become the production home page.
+The WordPress block theme in `wp-content/themes/dougforar/` is the sole website
+and the production direction. Do not add a separate static site, design concept,
+or frontend build tool unless the user explicitly requests one.
 
 ## Architecture
 
-- Vite 8 with `src/` as the project root
-- Tailwind CSS 4 through the `@tailwindcss/vite` plugin
-- CSS-first Tailwind configuration in `src/assets/css/main.css`
-- Plain HTML with no template system or JavaScript framework
-- Source HTML in `src/`; generated output in `dist/`
-- Static files in `src/public/`, copied unchanged to `dist/`
+- WordPress 7.1 with PHP 8.2 and MariaDB 11.4 for local development
+- Custom block theme in `wp-content/themes/dougforar/`
+- Block templates and template parts written as WordPress block markup
+- Theme settings and styles in `theme.json` and `style.css`
+- Local services managed by Docker Compose
+- Local site content initialized by `scripts/setup-local-wordpress.sh`
 
-Do not introduce Handlebars, Alpine.js, or another dependency unless the
-approved site requires behavior that cannot be implemented simply without it.
+Use WordPress core blocks and APIs before adding plugins, JavaScript libraries,
+CSS frameworks, or build tooling.
 
 ## Development
 
-- `npm run dev`: start the Vite development server
-- `npm run build`: build the site into `dist/`
-- `npm run preview`: serve the production build on port 4173
-- `npm run a11y`: audit all configured pages against WCAG 2 AA; requires a
-  preview server on `http://localhost:4173` or `PA11Y_BASE_URL`
-- `./deploy.sh stage|prod`: build and deploy `dist/` to DreamHost
-- `./deploy.sh stage|prod --dry-run`: preview an rsync deployment
+- `npm run wp:setup`: initialize WordPress, activate the theme, and ensure local
+  pages exist
+- `npm run dev` or `npm run wp:start`: start the existing WordPress and database
+  containers
+- `npm run wp:stop`: stop and remove the local containers
+- `npm run wp:logs`: follow WordPress logs
+- Local site: `http://localhost:8080`
+- Local admin: `http://localhost:8080/wp-admin/`
 
-Deployment settings belong in the untracked `.deploy.env` file. Never commit
-SSH credentials or server-specific secrets.
+The theme directory is bind-mounted into WordPress, so theme changes appear
+without rebuilding an image. WordPress core, uploads, and database data live in
+Docker volumes and must not be committed.
 
-## Adding or Removing Pages
+## Deployment
 
-HTML entry points are explicit. Whenever a page is added, removed, or renamed,
-update both:
+- `./deploy.sh stage --dry-run` or `./deploy.sh prod --dry-run`: preview a theme
+  deployment
+- `./deploy.sh stage` or `./deploy.sh prod`: sync the custom theme to an existing
+  remote WordPress installation
+- Deployment includes only runtime theme files. It does not deploy WordPress
+  core, uploads, plugins, database content, or `content/` setup fixtures.
+- Deployment settings belong in the ignored `.deploy.env` file. Never commit
+  server-specific settings or credentials.
 
-1. `build.rollupOptions.input` in `vite.config.js`
-2. The audited URL list in `.pa11yci.cjs`
+## Theme Conventions
 
-## HTML and CSS Conventions
-
-- Indent HTML with 4 spaces.
-- Use Tailwind utility classes directly. Avoid one-use component abstractions.
-- Use `stone-*`, not `gray-*`, for neutral Tailwind colors.
-- Prefer semantic theme colors: `primary`, `primary-hover`, `secondary`,
-  `accent`, `paper`, and `ink`.
-- Prefix custom CSS classes with `dc-`.
-- Use relative paths for internal links and assets.
+- Follow WordPress block-theme conventions.
+- Indent HTML with 4 spaces and PHP with 4 spaces.
+- Prefix custom PHP functions, CSS classes, and identifiers with `dougforar_`
+  or `dc-` as appropriate.
+- Keep custom styling in `style.css` and global design tokens in `theme.json`.
 - Use semantic HTML, visible keyboard focus, descriptive alternative text, and
   WCAG 2 AA color contrast.
 - Keep Unix line endings.
@@ -67,21 +63,22 @@ update both:
 - `facebook-content.md` contains draft source material from Doug's 2024
   campaign. Condense and adapt it, but do not invent positions or biographical
   claims.
-- Current confirmed public contact methods are `dougcorbitt@arkansas54.net` and the
-  campaign Facebook page.
+- Current confirmed public contact methods are `dougcorbitt@arkansas54.net` and
+  the campaign Facebook page.
 - Do not publish Doug's phone number without explicit approval.
-- Do not add donation, volunteer, email, or SMS collection until the campaign
-  supplies the approved service, destination, and any required consent text.
-- Keep `noindex, nofollow` on concept and staging pages. Remove it only from the
-  approved production site.
+- Do not add volunteer, email, or SMS collection until the campaign supplies
+  the approved service, destination, and required consent text.
+- Do not invent donation recipients or links.
 - The current paid-for disclaimer is provisional and must be confirmed with the
   campaign before production launch.
 
 ## Assets
 
-Campaign photographs are in `src/public/assets/img/`. Use lowercase kebab-case
-filenames for new assets. Do not upscale low-resolution photographs beyond a
-size where they remain visually acceptable.
+Original campaign photographs are stored in the root `images/` directory as a
+source archive. Files served by the website belong under
+`wp-content/themes/dougforar/assets/`; copy and optimize source images there as
+needed. Use lowercase kebab-case filenames. Do not upscale low-resolution
+photographs beyond a size where they remain visually acceptable.
 
 ## Writing Style
 
@@ -94,5 +91,5 @@ size where they remain visually acceptable.
 
 - Use conventional commit messages with a first line under 72 characters.
 - Do not add agent attribution to commits.
-- Do not edit or commit `dist/`; it is replaced by every build.
-- Do not commit `node_modules/` or `.deploy.env`.
+- Do not commit WordPress core, uploads, local database data, `node_modules/`,
+  `.env`, or temporary files.

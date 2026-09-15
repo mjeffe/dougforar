@@ -170,8 +170,7 @@ a {
 
 .dc-hero-photo {
     float: right;
-    width: min(42%, 30rem);
-    max-width: 30rem;
+    width: min(31.5%, 22.5rem);
     aspect-ratio: 4 / 5;
     margin: 0 0 2rem clamp(2.5rem, 6vw, 6rem);
     overflow: hidden;
@@ -439,7 +438,7 @@ a {
     .dc-hero-photo {
         float: none;
         order: 4;
-        width: 100%;
+        width: 75%;
         margin: 2rem auto;
     }
 

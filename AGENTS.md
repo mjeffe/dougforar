@@ -44,8 +44,34 @@ Docker volumes and must not be committed.
   remote WordPress installation
 - Deployment includes only runtime theme files. It does not deploy WordPress
   core, uploads, plugins, database content, or `content/` setup fixtures.
+- `scripts/setup-local-wordpress.sh` is local-only. Never run it against staging
+  or production.
+- Changes to page or post content, WordPress options, users, or plugins require
+  a separate database operation with explicit approval. Do not assume deploying
+  a changed `content/` fixture updates an existing remote page.
 - Deployment settings belong in the ignored `.deploy.env` file. Never commit
   server-specific settings or credentials.
+- Run a dry run before every theme deployment. After a production change, check
+  the affected public routes and inspect representative desktop and mobile
+  renders when appearance could change.
+
+## Production Operations
+
+- Production is a DreamHost-managed WordPress installation at
+  `https://www.dougforar.com/`; staging is a separate WordPress installation.
+- Production has public registration, comments, and pingbacks disabled. Existing
+  content is also closed to comments and pings.
+- Production defines `DISALLOW_FILE_EDIT` and `FORCE_SSL_ADMIN` in
+  `wp-config.php`. Preserve those settings.
+- DreamHost Panel Login is an active plugin that intentionally hides itself from
+  the normal Plugins screen. Do not remove it merely because it is not visible
+  there.
+- UpdraftPlus sends daily database and file backups to Google Drive and retains
+  14 of each. Do not expose its OAuth settings or tokens. DreamHost shared
+  hosting must not be used for persistent backup storage.
+- Local backup archives belong in the ignored `backups/` directory and may
+  contain database credentials, password hashes, and personal information. Keep
+  them private and never commit them.
 
 ## Theme Conventions
 
@@ -69,8 +95,14 @@ Docker volumes and must not be committed.
 - Do not add volunteer, email, or SMS collection until the campaign supplies
   the approved service, destination, and required consent text.
 - Do not invent donation recipients or links.
-- The current paid-for disclaimer is provisional and must be confirmed with the
-  campaign before production launch.
+- The campaign paid for the website from its campaign checking account, but the
+  exact legal name of the true sponsor has not been verified. Arkansas requires
+  electronic political communications to identify the true sponsor. Do not
+  treat the current disclaimer wording as confirmed until Doug or the campaign
+  treasurer verifies that it matches the sponsor name used in campaign records.
+- The privacy policy reflects a site with no forms, public accounts, comments,
+  advertising cookies, or tracking cookies. Revisit it before adding any of
+  those features or embedding third-party content.
 
 ## Assets
 

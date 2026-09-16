@@ -1,5 +1,6 @@
 node_modules/
 tmp/
+backups/
 .deploy.env
 .DS_Store
 .env

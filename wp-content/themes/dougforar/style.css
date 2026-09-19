@@ -376,10 +376,15 @@ a {
 
 .dc-donate-grid .wp-block-column {
     grid-column: span 2;
+    text-align: center;
 }
 
 .dc-donate-grid .wp-block-column:nth-child(n + 4) {
     grid-column: span 3;
+}
+
+.dc-donate-grid .wp-block-buttons {
+    justify-content: center;
 }
 
 .dc-card-grid .wp-block-column {

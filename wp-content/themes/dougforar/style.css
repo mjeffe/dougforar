@@ -370,6 +370,18 @@ a {
     margin-top: 3rem;
 }
 
+.wp-block-columns.dc-donate-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.dc-donate-grid .wp-block-column {
+    grid-column: span 2;
+}
+
+.dc-donate-grid .wp-block-column:nth-child(n + 4) {
+    grid-column: span 3;
+}
+
 .dc-card-grid .wp-block-column {
     display: flex;
     flex-direction: column;
@@ -409,6 +421,15 @@ a {
 @media (max-width: 781px) {
     .wp-block-columns.dc-priority-grid {
         grid-template-columns: 1fr;
+    }
+
+    .wp-block-columns.dc-donate-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dc-donate-grid .wp-block-column,
+    .dc-donate-grid .wp-block-column:nth-child(n + 4) {
+        grid-column: auto;
     }
 
     .dc-hero-inner {
